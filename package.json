@@ -1,0 +1,35 @@
+{
+  "name": "music-library-api",
+  "version": "1.0.0",
+  "description": "music library api project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r dotenv/config index.js",
+    "prestart": "node scripts/create-database.js",
+    "test": "mocha tests/**/*.js --exit --recursive --timeout 60000 --file ./tests/test-setup.js",
+    "pretest": "node scripts/create-database.js test",
+    "posttest": "node scripts/drop-database.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samcbride/music-library-api.git"
+  },
+  "author": "Shona McBride",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samcbride/music-library-api/issues"
+  },
+  "homepage": "https://github.com/samcbride/music-library-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
+  }
+}
