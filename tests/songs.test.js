@@ -53,7 +53,7 @@ describe("/songs", () => {
         })
         .then((res) => {
           expect(res.status).to.equal(201);
-          const songId = res.body.id;
+          const songId = res.body.id; // good use of named variable here, clarifies what the id is for the person reading the code
           expect(res.body.id).to.equal(songId);
           expect(res.body.name).to.equal("Solitude Is Bliss");
           expect(res.body.albumId).to.equal(`${album.id}`);

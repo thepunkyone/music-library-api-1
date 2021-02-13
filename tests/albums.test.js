@@ -30,18 +30,21 @@ describe('/albums', () => {
 
   describe('POST /artists/:artistId/albums', () => {
     it('creates a new album for a given artist', (done) => {
+      const albumName = 'InnerSpeaker' // In tests (especially longer tests) it can help swapping your primitive values
+      const albumYear = 2010 // for named variables so that it is easier for someone else who is not familiar with the code to understand what the test is doing
+                            // it also minimises the chance of typos resulting in false positives, enforces that input = expected output
       request(app)
         .post(`/artists/${artist.id}/albums`)
         .send({
-          name: 'InnerSpeaker',
-          year: 2010,
+          name: albumName,
+          year: albumYear,
         })
         .then((res) => {
           expect(res.status).to.equal(201);
 
           Album.findByPk(res.body.id, { raw: true }).then((album) => {
-            expect(album.name).to.equal('InnerSpeaker');
-            expect(album.year).to.equal(2010);
+            expect(album.name).to.equal(albumName);
+            expect(album.year).to.equal(albumYear);
             expect(album.artistId).to.equal(artist.id);
             done();
           })
@@ -164,7 +167,7 @@ describe('/albums', () => {
       .catch(error => done(error));
     });
     });
-    
+
   describe('DELETE /albums/:albumId', () => {
     it('deletes album record by id', (done) => {
       const album = albums[0];
